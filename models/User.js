@@ -1,7 +1,7 @@
 module.exports = (sequelize,DataTypes)=>{
-    const User = sequelize.define("Person",
+    const User = sequelize.define("userDetail",
     {
-        firstName: {
+        name: {
             type:DataTypes.STRING,
             allowNull:false,
             validate:{
@@ -9,13 +9,19 @@ module.exports = (sequelize,DataTypes)=>{
             }
             
         },
-        age: {
+        email: {
+            type:DataTypes.STRING,
+            allowNull:false,
+            validate:{
+                notEmpty:true
+            }
+        },
+        phoneNumber: {
             type:DataTypes.INTEGER,
             allowNull:false,
             validate:{
                 notEmpty:true
             }
-            
         }
 
     },
