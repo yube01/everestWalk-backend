@@ -11,7 +11,7 @@ const listUser = async (req, res) => {
 
     res.status(200).json(result);
   } catch (error) {
-    console.log(error);
+    
     res.status(500).json("Internal Server Error"); // Added a 500 status code for internal server error
   }
 }

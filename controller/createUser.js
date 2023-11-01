@@ -18,9 +18,9 @@ const createUser = async (req, res) => {
         }
 
         // Create a new user
-        const result = await userDetail.create({ name, email, phoneNumber });
+        await userDetail.create({ name, email, phoneNumber });
 
-        console.log("User data inserted");
+       
 
         // Respond with a success message and status code 201 (Created)
         res.status(201).json("User data inserted successfully");

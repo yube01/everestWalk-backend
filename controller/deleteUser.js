@@ -3,7 +3,7 @@ const { userDetail } = require("../models");
 const deleteUser = async (req, res) => {
   try {
     const userId = req.params.id;
-    console.log(userId);
+    
 
     // Check if the user with the given ID exists
     const isAvailable = await userDetail.findOne({
@@ -23,10 +23,10 @@ const deleteUser = async (req, res) => {
       }
     });
 
-    console.log("User deleted");
+    
     res.status(200).json(`UserId ${userId} deleted`);
   } catch (error) {
-    console.log(error);
+    
     res.status(500).json("Internal Server Error"); // Added a 500 status code for internal server error
   }
 }

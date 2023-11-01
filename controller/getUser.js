@@ -3,7 +3,7 @@ const { userDetail } = require("../models");
 const getUser = async (req, res) => {
   try {
     const userId = req.params.id;
-    console.log(userId);
+   
 
     // Check if the user with the given ID exists
     const isAvailable = await userDetail.findOne({
@@ -16,7 +16,7 @@ const getUser = async (req, res) => {
       return res.status(404).json("User not found"); // Corrected status code to 404 (Not Found)
     }
 
-    console.log("User data");
+    
 
     const responseData = {
       id: isAvailable.id,
@@ -27,7 +27,7 @@ const getUser = async (req, res) => {
 
     res.status(200).json(responseData);
   } catch (error) {
-    console.log(error);
+    
     res.status(500).json("Internal Server Error"); // Added a 500 status code for internal server error
   }
 }

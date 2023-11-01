@@ -42,7 +42,7 @@ const updateUser = async (req, res) => {
       }
     );
 
-    console.log("User data updated");
+    
 
     // Fetch the updated user data
     const userUpdate = await userDetail.findOne({
