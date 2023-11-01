@@ -1,34 +1,34 @@
-const {userDetail} = require("../models")
+const { userDetail } = require("../models");
 
-const deleteUser = async(req,res)=>{
+const deleteUser = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    console.log(userId);
 
-   
-
-    try {
+    // Check if the user with the given ID exists
+    const isAvailable = await userDetail.findOne({
+      where: {
+        id: userId
+      }
+    });
     
-        
-        const userId = req.params.id
-        console.log(userId)
-
-        const isAvailable = await userDetail.findOne({
-            where:{
-                id:userId
-            }
-        })
-        if(isAvailable === null) return res.status(401).json("User not found")
-
-        const result = await userDetail.destroy({
-            where:{
-                id:userId
-            }
-        })
-        console.log("user deleted")
-        res.status(200).json("deleted")
-    } catch (error) {
-        console.log(error)
-        
+    if (isAvailable === null) {
+      return res.status(404).json("User not found"); // Corrected status code to 404 (Not Found)
     }
-    
+
+    // Delete the user with the given ID
+    await userDetail.destroy({
+      where: {
+        id: userId
+      }
+    });
+
+    console.log("User deleted");
+    res.status(200).json(`UserId ${userId} deleted`);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json("Internal Server Error"); // Added a 500 status code for internal server error
+  }
 }
 
-module.exports = deleteUser
+module.exports = deleteUser;
