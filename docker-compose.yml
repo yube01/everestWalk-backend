@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  mysqlDB:
+    image: mysql:latest
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=yube
+      - MYSQL_DATABASE=database
+    ports:
+      - 3306:3306
+    volumes:
+      - db:/var/lib/mysql
+  app:
+    depends_on:
+      - mysqlDB
+    build: ./app
+    restart: unless-stopped
+    
+    ports:
+      - 9000:9000
+    environment:
+      - DB_HOST=localhost
+      - DB_USER=root
+      - DB_PASSWORD=yube
+      - DB_NAME=database
+      - DB_PORT=3306
+    stdin_open: true
+    tty: true
+
+volumes: 
+  db:

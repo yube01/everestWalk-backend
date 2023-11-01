@@ -21,5 +21,7 @@ db.sequelize.sync().then((req)=>{
         console.log("Server Started")
     })
 
+}).catch((err)=>{
+    console.log("Not connected")
 })
 
